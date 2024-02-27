@@ -1,15 +1,17 @@
 import widgets
 
-print("Welcome to BlitzFlow")
+# init
+quote = widgets.info()
+line = widgets.info()
+dat = widgets.datemanager()
 
 
-quote = widgets.obj()
-
-line = widgets.obj()
 
 
+# Output
+dat.today()
 line.line()
 print(quote.rand_quote())
-line.line()
+#line.line()
 
 #widgets.quotes()
