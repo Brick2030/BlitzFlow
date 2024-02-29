@@ -1,17 +1,14 @@
 #from time import ctime
 import time
+import math
 
 def returnCycles():
-    sleepTime = 24
+    sleepTime = 24 # Move to settings file
     cycleTime = 0.5
 
-    print("Hello world")
-
-
     Time = time.localtime()
-    hour = float(Time.tm_hour + Time.tm_min/60)
-    print(hour)
+    hour = round(Time.tm_hour + Time.tm_min/60)
 
     delta = (sleepTime - hour) / cycleTime
 
-    return delta
+    return int(delta)
