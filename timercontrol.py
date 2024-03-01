@@ -1,42 +1,48 @@
 import timer
 import os
 import time
+import tasks
 
 
+taskList = []
 
-print("Welcome to Cycles Timer:\n")
+def add(cycles, name, status, result):
+    task1 = tasks.task(cycles, name, status, result)
+    taskList.append(task1)
 
-timerObject = timer.Timer() # This object will be controlled by commands
-#timerObject.ShowCycles() 
+def remove(index):
+    taskList.pop(index)
 
-#print("Enter command to continue: ")
+def complete(index, time):
+    taskList[index].ChangeStatus(3)
+    taskList[index].ChangeResult(time)
+
+def fail(index):
+    taskList[index].ChangeStatus(0)
+
 
 while(True):
-    time.sleep(0.5)
-    os.system('cls' if os.name == 'nt' else 'clear')
-    timerObject.ShowCycles()
-    command = input("Enter command to continue:\n")
-
-    match command:
-        case "exit":
-            quit()
-
-        #case _:
-            #print("Error! Wrong command!\n")
-
+    com = input()
+    
+    match com:
         case "add":
-            print("Enter planned cycles for task:")
-            plan = input()
-            print("Enter name of the task")
-            name = input()
-            timerObject.AddTask(plan, name)
+            cycles = input("cycles: ")
+            name = input("name: ")
+            add(cycles, name, 1, 0)
 
+        case "show all":
+            for i in taskList:
+                print(i.ReturnTask())
 
+        case "complete":
+            index = input("Index to complete: ")
+            time = input("How many cycles used to finish: ")
+            complete(int(index), (time))
 
+        case "fail":
+            index = input("Index to fail: ")
+            fail(int(index))
 
-
-
-        case _:
-            print("Wrong command!\n")
-
-
+        case "remove":
+            index = input("Index to remove")
+            remove(int(index))
