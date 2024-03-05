@@ -22,6 +22,15 @@ def fail(index):
 
 
 while(True):
+    os.system('cls' if os.name == 'nt' else 'clear')
+    for x, i in enumerate(taskList):
+        if (i.ReturnTask()[2] == "Nothing" or i.ReturnTask()[2] == "Ongoing"):
+            print(x, " ", i.ReturnTask())
+    print("- - -")
+    for x, i in enumerate(taskList):
+        if(i.ReturnTask()[2] == "Completed"):
+            print(x, " ", i.ReturnTask())
+
     com = input()
     
     match com:
@@ -29,10 +38,6 @@ while(True):
             cycles = input("cycles: ")
             name = input("name: ")
             add(cycles, name, 1, 0)
-
-        case "show all":
-            for i in taskList:
-                print(i.ReturnTask())
 
         case "complete":
             index = input("Index to complete: ")
