@@ -38,7 +38,7 @@ while(True):
 
     slp = cycles.returnCycles()
     print("Cycles until sleep:", slp)
-    print("%7s %10s %40s %10s %10s" % ("[Index]", "[Cycles]", "[Name]", "[Status]", "[Result]"))
+    print("%7s %10s %40s %10s %10s %20s" % ("[Index]", "[Cycles]", "[Name]", "[Status]", "[Result]", "[Result 2]"))
 
 
 
@@ -48,13 +48,13 @@ while(True):
 
 
         if (array[2] == "Nothing" or array[2] == "Ongoing"):
-            print("%7s %10s %40s %10s %10s" % (str(x), str(array[0]), array[1], array[2], str(array[3])))
+            print("%7s %10s %40s %10s %10s %20s" % (str(x), str(array[0]), array[1], array[2], str(array[3]), "NO RESULT"))
     print("- - -")
     
     for x, i in enumerate(taskList):
         array = i.ReturnTask()
         if(array[2] == "Completed"):
-            print("%7s %10s %40s %10s %10s" % (str(x), str(array[0]), array[1], array[2], str(array[3])))
+            print("%7s %10s %40s %10s %10s %20s" % (str(x), str(array[0]), array[1], array[2], str(array[3]), str(float(array[3])/float(array[0])*100)), "%")
 
     com = input()
     
