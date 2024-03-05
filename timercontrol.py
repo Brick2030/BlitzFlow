@@ -1,4 +1,3 @@
-import timer
 import os
 import time
 import tasks
