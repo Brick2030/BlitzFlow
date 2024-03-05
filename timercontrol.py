@@ -2,12 +2,14 @@ import timer
 import os
 import time
 import tasks
+import widgets
+import cycles
 
 
 taskList = []
 
-def add(cycles, name, status, result):
-    task1 = tasks.task(cycles, name, status, result)
+def add(ccycles, name, status, result):
+    task1 = tasks.task(ccycles, name, status, result)
     taskList.append(task1)
 
 def remove(index):
@@ -21,23 +23,47 @@ def fail(index):
     taskList[index].ChangeStatus(0)
 
 
+
+
+quote = widgets.info()
+
+
+
+
+
+
 while(True):
     os.system('cls' if os.name == 'nt' else 'clear')
+
+    print(quote.rand_quote(), "\n")
+
+    slp = cycles.returnCycles()
+    print("Cycles until sleep:", slp)
+    print("%7s %10s %40s %10s %10s" % ("[Index]", "[Cycles]", "[Name]", "[Status]", "[Result]"))
+
+
+
+
     for x, i in enumerate(taskList):
-        if (i.ReturnTask()[2] == "Nothing" or i.ReturnTask()[2] == "Ongoing"):
-            print(x, " ", i.ReturnTask())
+        array = i.ReturnTask()
+
+
+        if (array[2] == "Nothing" or array[2] == "Ongoing"):
+            print("%7s %10s %40s %10s %10s" % (str(x), str(array[0]), array[1], array[2], str(array[3])))
     print("- - -")
+    
     for x, i in enumerate(taskList):
-        if(i.ReturnTask()[2] == "Completed"):
-            print(x, " ", i.ReturnTask())
+        array = i.ReturnTask()
+        if(array[2] == "Completed"):
+            print("%7s %10s %40s %10s %10s" % (str(x), str(array[0]), array[1], array[2], str(array[3])))
 
     com = input()
     
     match com:
         case "add":
-            cycles = input("cycles: ")
+            ccycles = input("cycles: ")
             name = input("name: ")
-            add(cycles, name, 1, 0)
+            add(ccycles, name, 1, 0)
 
         case "finish":
             index = input("Index to complete: ")
