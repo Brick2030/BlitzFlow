@@ -39,7 +39,7 @@ while(True):
             name = input("name: ")
             add(cycles, name, 1, 0)
 
-        case "complete":
+        case "finish":
             index = input("Index to complete: ")
             time = input("How many cycles used to finish: ")
             complete(int(index), (time))
@@ -51,3 +51,10 @@ while(True):
         case "remove":
             index = input("Index to remove")
             remove(int(index))
+
+        case "exit":
+            quit()
+
+        case "help":
+            print("\nadd\nfinish\nfail\nremove\nhelp\nexit\n")
+            i = input("type anything to close help: ")
