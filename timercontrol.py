@@ -21,6 +21,10 @@ def complete(index, time):
 def fail(index):
     taskList[index].ChangeStatus(0)
 
+def move(index, index2):
+    tempObj = taskList[index2]
+    taskList[index2] = taskList[index]
+    taskList[index] = tempObj
 
 
 
@@ -40,17 +44,24 @@ while(True):
     print(quote.rand_quote()) # Random Quote.
 
     slp = cycles.returnCycles() # How many cycles until sleep time.
-    print("Cycles until sleep:", slp)
+    print("Cycles until sleep:", slp, "\n")
     print("%7s %10s %40s %10s %10s %20s" % ("[Index]", "[Cycles]", "[Name]", "[Status]", "[Result]", "[Result 2]")) # Header format.
 
 
-
+    cycleSumm = 0 # Summ of cycles.
     for x, i in enumerate(taskList): # This loop outputs tasks that need to be solved rn.
         array = i.ReturnTask() # Array = one task. It's array bc it returns array.
 
+
         if (array[2] == "Nothing" or array[2] == "Ongoing"):
+            cycleSumm = cycleSumm + int(array[0])
             print("%7s %10s %40s %10s %10s %20s" % (str(x), str(array[0]), array[1], array[2], str(array[3]), "NO RESULT"))
-    print("- - -")
+   
+
+
+    print("- - - "*20)
+    print("%10s" % ("Summ: "), cycleSumm)
+    print("- - - "*20)
     
     for x, i in enumerate(taskList): # Second table for completed tasks
         array = i.ReturnTask() # array = task. 
@@ -82,6 +93,13 @@ while(True):
         case "exit":
             quit()
 
+        case "move":
+            index = input("Enter index of task to move")
+            index2 = input("Enter index where to move")
+            move(int(index), int(index2))
+            
+
+
         case "help":
-            print("\nadd\nfinish\nfail\nremove\nhelp\nexit\n")
+            print("\nadd\nfinish\nfail\nremove\nhelp\nexit\nmove\n")
             i = input("type anything to close help: ")

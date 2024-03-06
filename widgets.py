@@ -21,14 +21,9 @@ class info(): # Static info without interaction
         
         return(authorName + "\n" + authorQuote + "\n")
 
-
-
-        #textchunk = wholetext.split('#') # Textchunk is quote + author. Separated by #
-        #num = randint(0, len(textchunk)-1) # random number 
-        #quote = textchunk[num].split('$')  # Quote is [0] text and [1] is author
-        # Dont put # at the end of file. It will break everything. (Fix it)
-        #return (quote[0] + " (" + str(num) + ")\n" + quote[1])
-
+ 
+    def delayed_tasks(self):
+        return 0
 
 
     def line(self):
