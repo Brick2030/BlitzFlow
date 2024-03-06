@@ -97,6 +97,11 @@ while(True):
             index = input("Enter index of task to move")
             index2 = input("Enter index where to move")
             move(int(index), int(index2))
+
+        case "show delayed":
+            print("Delayed tasks")
+            # Сделать булеан переменную на отображения виджета отложенной задачи.
+            # Стоит ли делать отложенную задачу подклассом обычной задачи?
             
 
 
