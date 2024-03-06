@@ -6,7 +6,8 @@ import settings
 def returnCycles():
 
     Time = time.localtime()
-    hour = round(Time.tm_hour + Time.tm_min/60)
+    hour = Time.tm_hour + Time.tm_min/60
     delta = (settings.sleepTime - hour) / settings.cycleTime
 
-    return (delta)
+    return ("%.0f" % (round(delta)))
+
