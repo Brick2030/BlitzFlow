@@ -1,10 +1,11 @@
 import pickle
 import os
 import settings
+import random
 
 filename = settings.GoalManagerFileName
 goal_array = []
-
+rand10_array = []
 
 # Objects to be stored in the file
 class Goal:
@@ -28,15 +29,31 @@ def add(goal):
 def remove(index):
     goal_array.pop(int(index))
 
+def randmode():
+    rand10_array.clear()
+    for x in range(10):
+        rand = random.randint(0, len(goal_array)-1)
+        rand10_array.append(rand)
+
+load(filename)
+
+defmode = True
+rand10mode = False
 
 while(True):
     
     os.system('cls' if os.name == 'nt' else 'clear')
 
-    
-    for x, i in enumerate(goal_array):
-        if (i.status == "ongoing"): 
-            print(f"%d  %s - %s" % (x, i.name, i.status))
+    if (defmode):
+        for x, i in enumerate(goal_array):
+            if (i.status == "ongoing"): 
+                print(f"%d  %s" % (x, i.name))
+
+    if (rand10mode):
+        randmode()
+        for x, i in enumerate(goal_array):
+            if (i.status == "ongoing" and rand10_array.count(x) > 0): 
+                print(f"%d  %s \n" % (x, i.name))
 
     com = input("Enter a command: ")
     match com:
@@ -55,7 +72,18 @@ while(True):
             remove(inp)
         
         case "help":
-            print("help, load, save, add, remove, exit")
+            print("help, load, save, add, remove, exit, invert, randm, defm")
+
+        case "invert":
+            goal_array = goal_array[::-1]
+
+        case "randm":
+            defmode = False
+            rand10mode = True
+
+        case "defm":
+            defmode = True
+            rand10mode = False
 
         case "exit":
             quit()
