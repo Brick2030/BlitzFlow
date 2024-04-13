@@ -60,7 +60,6 @@ ShowFinished = True
 ShowFailed = True
 
 
-
 ##############################[Controls]#################################################
 
 def save(): # goals are array
@@ -77,15 +76,12 @@ def showList(arrayName):
     TaskTab.clear()
     TaskTab = PrettyTable(['Index','Cycles', 'Name', 'Result'])
     TaskTab.align = "r"
-
     cyclesSumm = 0
 
     for x, i in enumerate(arrayName):
         TaskTab.add_row([x, i.cycles, i.name, i.result])
         cyclesSumm = cyclesSumm + int(i.cycles)
 
-
-    
     print(TaskTab)
     print(f"Cycle summ is {cyclesSumm}\n")
 
