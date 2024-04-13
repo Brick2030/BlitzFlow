@@ -6,9 +6,16 @@ import cycles
 import datetime
 from prettytable import PrettyTable
 
+# TODO
 # Обновить ввод циттат. Разнообразить их.
 # Попробывать форматировать вывод в таблицу. Посмотреть библиотеки.
 # Сделать возможность сохранения рабочей сессии как в goalmanager
+
+
+# FINISHED
+
+
+
 
 # Таблица теперь объект. она содержит другие объекты. Поле таблицы это объект задача и индекс 
 #в массиве этой задачи. (использовать ли словарь?). Всякие поля в таблице (названия, статистика, 
@@ -37,6 +44,7 @@ class TaskClass:
         self.result = result 
 
 
+# Different type of lists. Helps managing different kind of tasks after saving file.
 UnfinishedLIST = []
 FinishedLIST = []
 FailedLIST = []
@@ -46,12 +54,7 @@ GlobalLIST = [UnfinishedLIST, FinishedLIST, FailedLIST] # ARRAY OF ARRAYS. ONGOI
 #taskList = [] # MAIN ARRAY OF TASKS
 quote = widgets.info() # Object for quote.
 
-
-
-
-
-
-
+# Bools for output management
 ShowUnfinished = True
 ShowFinished = True
 ShowFailed = True
@@ -75,10 +78,16 @@ def showList(arrayName):
     TaskTab = PrettyTable(['Index','Cycles', 'Name', 'Result'])
     TaskTab.align = "r"
 
+    cyclesSumm = 0
+
     for x, i in enumerate(arrayName):
         TaskTab.add_row([x, i.cycles, i.name, i.result])
+        cyclesSumm = cyclesSumm + int(i.cycles)
+
+
     
     print(TaskTab)
+    print(f"Cycle summ is {cyclesSumm}\n")
 
 def add(cycles, name):
     add_task = TaskClass(cycles, name, "0", "0")
