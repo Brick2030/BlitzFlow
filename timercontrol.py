@@ -1,8 +1,11 @@
 import os
+import pickle
 import time
 import tasks
 import widgets
 import cycles
+import datetime
+
 
 # Обновить ввод циттат. Разнообразить их.
 # Попробывать форматировать вывод в таблицу. Посмотреть библиотеки.
@@ -37,12 +40,26 @@ def move(index, index2):
     taskList[index2] = taskList[index]
     taskList[index] = tempObj
 
+# Naming files for saving.
+current_date = datetime.date.today()
+TodayFileName = current_date.strftime("%d-%m-%Y") + ".task  "
+#print(TodayFileName)
+
+
+def save(): # goals are array
+    with open(TodayFileName, "wb") as f:
+        pickle.dump(taskList, f)
+
+def load(filename):
+    with open(filename, "rb") as f:
+        loaded_goals = pickle.load(f)
+    return loaded_goals # return array
 
 
 quote = widgets.info() # Object for quote.
 
 
-
+# Раздробить цельный список обхектов в несколько списков по статусам.
 
 
 
@@ -54,8 +71,7 @@ while(True):
 
     print(quote.rand_quote()) # Random Quote.
 
-    slp = cycles.returnCycles() # How many cycles until sleep time.
-    print("Cycles until sleep:", slp, "\n")
+    print("Cycles until sleep:", cycles.returnCycles(), "\n")
     print("%7s %10s %40s %10s %10s %20s" % ("[Index]", "[Cycles]", "[Name]", "[Status]", "[Result]", "[Result 2]")) # Header format.
 
 
@@ -68,11 +84,8 @@ while(True):
             cycleSumm = cycleSumm + int(array[0])
             print("%7s %10s %40s %10s %10s %20s" % (str(x), str(array[0]), array[1], array[2], str(array[3]), "NO RESULT"))
    
-
-
-    print("- - - "*20)
     print("%10s" % ("Summ: "), cycleSumm)
-    print("- - - "*20)
+
     
     for x, i in enumerate(taskList): # Second table for completed tasks
         array = i.ReturnTask() # array = task. 
@@ -84,9 +97,9 @@ while(True):
     
     match com:
         case "add":
-            ccycles = input("cycles: ")
-            name = input("name: ")
-            add(ccycles, name, 1, 0)
+            TaskCycles = input("cycles: ")
+            TaskName = input("name: ")
+            add(TaskCycles, TaskName, 1, 0)
 
         case "finish":
             index = input("Index to complete: ")
@@ -113,6 +126,14 @@ while(True):
             print("Delayed tasks")
             # Сделать булеан переменную на отображения виджета отложенной задачи.
             # Стоит ли делать отложенную задачу подклассом обычной задачи?
+
+        case "save":
+            save()
+            time.sleep(5)
+
+        case "load":
+            inp = input("Enter file name: dd-mm-yy without .task extension: ")
+            taskList = load(inp + ".task")
             
 
 

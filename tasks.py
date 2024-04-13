@@ -5,6 +5,13 @@ class task:
         self.ChangeStatus(status)
         self.Result = result 
 
+# new status system
+# 0 - Ongoing.
+# 1 - Finished
+# -1 - Failed (delayed).
+# Object will store only number status. And table itself will translate it words
+# Or maybe it's better to use dictionary. But why to complicate such simple things.
+
     def ChangeStatus(self, input):
         match input:
             case 0: self.Status = "Failed"
