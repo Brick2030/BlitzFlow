@@ -84,13 +84,15 @@ def showList(arrayName):
     TaskTab = PrettyTable(['Index','Cycles', 'Name', 'Result'])
     TaskTab.align = "r"
     cyclesSumm = 0
+    resultSumm = 0
 
     for x, i in enumerate(arrayName):
         TaskTab.add_row([x, i.cycles, i.name, i.result])
         cyclesSumm = cyclesSumm + int(i.cycles)
+        resultSumm = resultSumm + int(i.result)
 
     print(TaskTab)
-    print(f"Cycle summ is {cyclesSumm}\n")
+    print(f"Cycle summ is {cyclesSumm} | Result summ is {resultSumm}\n")
 
 def add(cycles, name):
     add_task = TaskClass(cycles, name, "0", "0")
@@ -192,6 +194,9 @@ while(True):
         case "more":
             ShowFailed = True
             ShowFinished = True
+
+        case "exit":
+            quit()
 
 
 
