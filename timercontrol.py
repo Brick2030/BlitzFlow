@@ -115,13 +115,14 @@ def randomGoals():
     RandGoalsArray.clear()
     for x in range(5):
         rand = random.randint(0, len(loaded_goals)-1)
+        if (rand10_array.count(rand) > 0): continue
         rand10_array.append(rand)
 
     for x in rand10_array:
-        RandGoalsArray.append(loaded_goals[x])
+        RandGoalsArray.append([x, loaded_goals[x]])
 
-    for i, goal in enumerate(RandGoalsArray):
-        print(i, goal.name) 
+    for goal in RandGoalsArray:
+        print(goal[0], goal[1].name) 
 
 
 
