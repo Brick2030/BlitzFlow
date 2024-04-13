@@ -5,6 +5,10 @@ import widgets
 import cycles
 import datetime
 from prettytable import PrettyTable
+import random
+
+
+
 
 # TODO
 # Обновить ввод циттат. Разнообразить их.
@@ -45,7 +49,8 @@ UnfinishedLIST = []
 FinishedLIST = []
 FailedLIST = []
 GlobalLIST = [UnfinishedLIST, FinishedLIST, FailedLIST] # ARRAY OF ARRAYS. ONGOING, FINISHED, FAILED
-
+rand10_array = [] # random 10 NUMBERS OF GOALS from goal array.
+RandGoalsArray = [] # Random goals from goal array.
 
 #taskList = [] # MAIN ARRAY OF TASKS
 quote = widgets.info() # Object for quote.
@@ -54,6 +59,12 @@ quote = widgets.info() # Object for quote.
 ShowUnfinished = True
 ShowFinished = True
 ShowFailed = True
+
+
+class Goal: # Class from goalmanager. Here until I figure it out how to combine those 2 apps into 1.
+    def __init__(self, name, status):
+        self.status = status
+        self.name = name
 
 
 ##############################[Controls]#################################################
@@ -96,6 +107,21 @@ def finish(index, cycles):
     FinishedLIST.append(temp_task)
     UnfinishedLIST.pop(index)
 
+def randomGoals():
+    with open("GMstorage", "rb") as f:
+        loaded_goals = pickle.load(f)
+
+    rand10_array.clear()
+    RandGoalsArray.clear()
+    for x in range(5):
+        rand = random.randint(0, len(loaded_goals)-1)
+        rand10_array.append(rand)
+
+    for x in rand10_array:
+        RandGoalsArray.append(loaded_goals[x])
+
+    for i, goal in enumerate(RandGoalsArray):
+        print(i, goal.name) 
 
 
 
@@ -117,7 +143,7 @@ while(True):
         print("FAILED")
         showList(FailedLIST)
 
-
+    randomGoals()
 
 
 
