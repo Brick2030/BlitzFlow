@@ -129,7 +129,6 @@ while(True):
 
         case "save":
             save()
-            time.sleep(5)
 
         case "load":
             inp = input("Enter file name: dd-mm-yy without .task extension: ")
