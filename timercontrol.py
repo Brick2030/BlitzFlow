@@ -7,7 +7,14 @@ import datetime
 from prettytable import PrettyTable
 import random
 
-
+# simplify widgets feature. Get rid of it.
+# Make qoute manager, that will make same files as timercontrol.
+# How to combine 2 apps into 1? Should I do this? 
+# GUI? Is that gonna be ugly? 
+# or CLI? Find ways to optimize/manage CLI apps.
+# Writing readme?
+# Built in AES encryption for every saved file.
+# 2 layers of encryption?
 
 # Naming files for saving.
 current_date = datetime.date.today()
@@ -142,12 +149,14 @@ while(True):
 
         case "load":
             inp = input("Enter file name: dd-mm-yy without .task extension: ")
+            if (len(inp) == 0): inp = current_date.strftime("%d-%m-%Y") # If nothing typed, loads today's note.
             #GlobalLIST = load(inp)
             GlobalLIST = load(inp + ".task")
 
             UnfinishedLIST = GlobalLIST[0]
             FinishedLIST = GlobalLIST[1]
             FailedLIST = GlobalLIST[2]
+            # What is this line? 
             #GlobalLIST = [UnfinishedLIST, FinishedLIST, FailedLIST] # ARRAY OF ARRAYS. ONGOING, FINISHED, FAILED
 
         case "add":
