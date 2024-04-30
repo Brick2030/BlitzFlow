@@ -29,14 +29,9 @@ import random
 current_date = datetime.date.today()
 TodayFileName = current_date.strftime("%d-%m-%Y") + ".task"
 
-# Main Class for task object
-# 0 - Ongoing.
-# 1 - Finished
-# -1 - Failed (delayed).
-# Object will store only number status. And table itself will translate it words
-# Or maybe it's better to use dictionary. But why to complicate such simple things.
+
 class TaskClass:
-    def __init__(self, cycles, name, status, result):
+    def __init__(self, cycles, name, result):
         self.cycles = cycles
         self.name = name
         self.result = result 
@@ -93,7 +88,7 @@ def showList(arrayName):
     print(f"Cycle summ is {cyclesSumm} | Result summ is {resultSumm}\n")
 
 def add(cycles, name):
-    add_task = TaskClass(cycles, name, "0", "0")
+    add_task = TaskClass(cycles, name, "0")
     UnfinishedLIST.append(add_task)
 
 def fail(index):
