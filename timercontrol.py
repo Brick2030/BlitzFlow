@@ -22,6 +22,9 @@ import settings
 # Built in AES encryption for every saved file.
 # 2 layers of encryption?
 
+# Сделать разбивку на директории по годам и месяцам. Тогда и дневник не нужен будет.
+
+
 # Naming files for saving.
 current_date = datetime.date.today()
 TodayFileName = settings.SaveDirectory + current_date.strftime("%d-%m-%Y") + ".task"
