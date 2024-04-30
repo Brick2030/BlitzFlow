@@ -8,7 +8,7 @@ import random
 # графический интерфейс но вряд ли это будет выглядить хорошо.
 
 
-filename = settings.GoalManagerFileName
+filename = settings.SaveDirectory + settings.GoalManagerFileName
 goal_array = []
 rand10_array = []
 

@@ -6,6 +6,7 @@ import cycles
 import datetime
 from prettytable import PrettyTable
 import random
+import settings
 
 
 # Saving those .task files into directory
@@ -27,7 +28,7 @@ import random
 
 # Naming files for saving.
 current_date = datetime.date.today()
-TodayFileName = current_date.strftime("%d-%m-%Y") + ".task"
+TodayFileName = settings.SaveDirectory + current_date.strftime("%d-%m-%Y") + ".task"
 
 
 class TaskClass:
@@ -103,7 +104,7 @@ def finish(index, cycles):
     UnfinishedLIST.pop(index)
 
 def randomGoals():
-    with open("GMstorage", "rb") as f:
+    with open(settings.SaveDirectory +settings.GoalManagerFileName, "rb") as f:
         loaded_goals = pickle.load(f)
 
     rand10_array.clear()
@@ -155,7 +156,7 @@ while(True):
             inp = input("Enter file name: dd-mm-yy without .task extension: ")
             if (len(inp) == 0): inp = current_date.strftime("%d-%m-%Y") # If nothing typed, loads today's note.
             #GlobalLIST = load(inp)
-            GlobalLIST = load(inp + ".task")
+            GlobalLIST = load(settings.SaveDirectory + inp + ".task")
 
             UnfinishedLIST = GlobalLIST[0]
             FinishedLIST = GlobalLIST[1]
