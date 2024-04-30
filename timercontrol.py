@@ -7,6 +7,15 @@ import datetime
 from prettytable import PrettyTable
 import random
 
+
+# Saving those .task files into directory
+# Команда note которая добавит ко дню заметку.
+# Создать нормальную редактируемую среду программы.
+# - Выделение основных пересекающихся методов в отдельные управляющие файлы
+# Компоненты программы должны иметь нормальный удобный API для обращения из будущего центра.
+# Options for stats analyzing of task files
+# Way of showing stats of task files.
+
 # simplify widgets feature. Get rid of it.
 # Make qoute manager, that will make same files as timercontrol.
 # How to combine 2 apps into 1? Should I do this? 
