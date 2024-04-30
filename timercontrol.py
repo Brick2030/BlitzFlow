@@ -8,20 +8,16 @@ from prettytable import PrettyTable
 import random
 import settings
 
-
-# Saving those .task files into directory
-# Команда note которая добавит ко дню заметку.
+# Команда note которая добавит ко дню заметку. (повременить с этим до появления api)
 # Создать нормальную редактируемую среду программы.
 # - Выделение основных пересекающихся методов в отдельные управляющие файлы
-# Компоненты программы должны иметь нормальный удобный API для обращения из будущего центра.
+# - Компоненты программы должны иметь нормальный удобный API для обращения из будущего центра.
+# simplify widgets feature. Get rid of it.
+
 # Options for stats analyzing of task files
 # Way of showing stats of task files.
-
-# simplify widgets feature. Get rid of it.
+# Options for stats analyzing of task files
 # Make qoute manager, that will make same files as timercontrol.
-# How to combine 2 apps into 1? Should I do this? 
-# GUI? Is that gonna be ugly? 
-# or CLI? Find ways to optimize/manage CLI apps.
 # Writing readme?
 # Built in AES encryption for every saved file.
 # 2 layers of encryption?
