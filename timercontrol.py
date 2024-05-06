@@ -2,12 +2,10 @@ import os
 import pickle
 import time
 import widgets
-import cycles
 import datetime
 from prettytable import PrettyTable
 import random
 import settings
-
 import math
 
 
@@ -31,9 +29,6 @@ GlobalLIST = [UnfinishedLIST, FinishedLIST, FailedLIST] # ARRAY OF ARRAYS. ONGOI
 rand10_array = [] # random 10 NUMBERS OF GOALS from goal array.
 RandGoalsArray = [] # Random goals from goal array.
 
-#taskList = [] # MAIN ARRAY OF TASKS
-quote = widgets.info() # Object for quote.
-
 # Bools for output management
 ShowUnfinished = True
 ShowFinished = True
@@ -48,7 +43,6 @@ class Goal: # Class from goalmanager. Here until I figure it out how to combine 
 
 ##############################[Controls]#################################################
 def returnCycles():
-
     Time = time.localtime()
     hour = Time.tm_hour + Time.tm_min/60
     delta = (settings.sleepTime - hour) / settings.cycleTime
@@ -114,7 +108,7 @@ def randomGoals():
 
 
 ##############################[Main Core]#################################################
-
+quote = widgets.info() # Object for quote.
 
 while(True):
     os.system('cls' if os.name == 'nt' else 'clear')
