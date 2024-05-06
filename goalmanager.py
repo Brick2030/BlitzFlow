@@ -3,10 +3,6 @@ import os
 import settings
 import random
 
-# Добавить дату в объект Goal. ПРидумать как обновить существующие объекты под новый формат
-# Возможно стоит создать на основе этих приложений окна приложения. Можно впринципе сделать и 
-# графический интерфейс но вряд ли это будет выглядить хорошо.
-
 
 filename = settings.SaveDirectory + settings.GoalManagerFileName
 goal_array = []

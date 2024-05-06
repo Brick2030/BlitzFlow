@@ -8,21 +8,7 @@ from prettytable import PrettyTable
 import random
 import settings
 
-# Команда note которая добавит ко дню заметку. (повременить с этим до появления api)
-# Создать нормальную редактируемую среду программы.
-# - Выделение основных пересекающихся методов в отдельные управляющие файлы
-# - Компоненты программы должны иметь нормальный удобный API для обращения из будущего центра.
-# simplify widgets feature. Get rid of it.
 
-# Options for stats analyzing of task files
-# Way of showing stats of task files.
-# Options for stats analyzing of task files
-# Make qoute manager, that will make same files as timercontrol.
-# Writing readme?
-# Built in AES encryption for every saved file.
-# 2 layers of encryption?
-
-# Сделать разбивку на директории по годам и месяцам. Тогда и дневник не нужен будет.
 
 
 # Naming files for saving.
