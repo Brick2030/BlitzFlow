@@ -8,7 +8,7 @@ from prettytable import PrettyTable
 import random
 import settings
 
-
+import math
 
 
 # Naming files for saving.
@@ -47,6 +47,12 @@ class Goal: # Class from goalmanager. Here until I figure it out how to combine 
 
 
 ##############################[Controls]#################################################
+def returnCycles():
+
+    Time = time.localtime()
+    hour = Time.tm_hour + Time.tm_min/60
+    delta = (settings.sleepTime - hour) / settings.cycleTime
+    return ("%.0f" % (round(delta)))
 
 def save(): # goals are array
     with open(TodayFileName, "wb") as f:
@@ -113,7 +119,7 @@ def randomGoals():
 while(True):
     os.system('cls' if os.name == 'nt' else 'clear')
     print(quote.rand_quote()) # Random Quote.
-    print("Cycles until sleep:", cycles.returnCycles(), "\n")
+    print("Cycles until sleep:", returnCycles(), "\n")
     
     if(ShowUnfinished):
         print("ONGOING")
