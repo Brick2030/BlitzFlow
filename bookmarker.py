@@ -6,6 +6,9 @@ import os
 from prettytable import PrettyTable
 import subprocess
 
+
+
+example = "https://suckless.org/sucks/systemd/"
 filename = settings.SaveDirectory + settings.BookMarkFileName
 
 bm_array = [] # Main array for all bookmarks. Will be saved and loaded.
@@ -18,6 +21,16 @@ class bookmark:
         self.date = date
         self.isUp = isUp
 
+def simplify_link(link: str):
+    try:
+        link_parts = link.split('/')
+        simplified_link = link_parts[2].split('.')
+        return simplified_link[len(simplified_link)-2]
+    except:
+        return link
+
+
+
 def showList(arrayName):
     BookTab = PrettyTable()
     BookTab.clear()
@@ -25,7 +38,8 @@ def showList(arrayName):
     BookTab.align = "r"
 
     for x, i in enumerate(arrayName):
-        BookTab.add_row([x, i.link, i.description, str(i.date), str(i.isUp)])
+        simpleLink = simplify_link(i.link)
+        BookTab.add_row([x, simpleLink, i.description, str(i.date), str(i.isUp)])
     print(BookTab)
 
 
