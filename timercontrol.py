@@ -11,7 +11,16 @@ import math
 
 # Naming files for saving.
 current_date = datetime.date.today()
-TodayFileName = settings.SaveDirectory + current_date.strftime("%d-%m-%Y") + ".task"
+year = current_date.strftime("%Y")
+month = current_date.strftime("%m")
+day = current_date.strftime("%d")
+DateName: str = year + "/" + month + "/"
+#TodayFileName = settings.SaveDirectory + current_date.strftime("%d-%m-%Y") + ".task"
+TodayFilePath = DateName
+#TodayFilePath = settings.SaveDirectory + DateName
+
+TodayFileName = TodayFilePath + day + ".task"
+
 
 
 class TaskClass:
@@ -49,7 +58,8 @@ def returnCycles():
     return ("%.0f" % (round(delta)))
 
 def save(): # goals are array
-    with open(TodayFileName, "wb") as f:
+    os.makedirs(os.path.dirname(settings.SaveDirectory + TodayFilePath), exist_ok=True)
+    with open(settings.SaveDirectory + TodayFileName, "wb") as f:
         pickle.dump(GlobalLIST, f)
 
 def load(filename):
@@ -112,6 +122,11 @@ quote = widgets.info() # Object for quote.
 
 while(True):
     os.system('cls' if os.name == 'nt' else 'clear')
+
+    print(TodayFileName)
+    print(TodayFilePath)
+
+
     print(quote.rand_quote()) # Random Quote.
     print("Cycles until sleep:", returnCycles(), "\n")
     
@@ -138,8 +153,10 @@ while(True):
             save()
 
         case "load":
-            inp = input("Enter file name: dd-mm-yy without .task extension: ")
-            if (len(inp) == 0): inp = current_date.strftime("%d-%m-%Y") # If nothing typed, loads today's note.
+            #inp = input("Enter file name: dd-mm-yy without .task extension: ")
+            inp = input("Enter year\month\day without .task extension: ")
+
+            if (len(inp) == 0): inp = TodayFileName[0:len(TodayFileName)-5] # If nothing typed, loads today's note.
             #GlobalLIST = load(inp)
             GlobalLIST = load(settings.SaveDirectory + inp + ".task")
 
