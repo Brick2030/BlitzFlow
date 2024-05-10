@@ -2,6 +2,7 @@ import pickle
 import os
 import settings
 import random
+import time
 
 
 filename = settings.SaveDirectory + settings.GoalManagerFileName
@@ -28,6 +29,9 @@ def add(goal):
     goal_array.append(goal)
 
 def remove(index):
+    print("- "*20)
+    print(goal_array[int(index)].name, "is deleted!")
+    time.sleep(1)
     goal_array.pop(int(index))
 
 def randmode():
