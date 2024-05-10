@@ -11,15 +11,16 @@ import math
 
 # Naming files for saving.
 current_date = datetime.date.today()
-year = current_date.strftime("%Y")
-month = current_date.strftime("%m")
+#year = current_date.strftime("%Y")
+#month = current_date.strftime("%m")
 day = current_date.strftime("%d")
-DateName: str = year + "/" + month + "/"
+DateName: str = current_date.strftime("%Y/%m/")
+#DateName: str = year + "/" + month + "/"
 #TodayFileName = settings.SaveDirectory + current_date.strftime("%d-%m-%Y") + ".task"
-TodayFilePath = DateName
+#TodayFilePath = DateName
 #TodayFilePath = settings.SaveDirectory + DateName
 
-TodayFileName = TodayFilePath + day + ".task"
+TodayFileName = DateName + day + ".task"
 
 
 
@@ -58,7 +59,7 @@ def returnCycles():
     return ("%.0f" % (round(delta)))
 
 def save(): # goals are array
-    os.makedirs(os.path.dirname(settings.SaveDirectory + TodayFilePath), exist_ok=True)
+    os.makedirs(os.path.dirname(settings.SaveDirectory + DateName), exist_ok=True)
     with open(settings.SaveDirectory + TodayFileName, "wb") as f:
         pickle.dump(GlobalLIST, f)
 
@@ -122,10 +123,6 @@ quote = widgets.info() # Object for quote.
 
 while(True):
     os.system('cls' if os.name == 'nt' else 'clear')
-
-    print(TodayFileName)
-    print(TodayFilePath)
-
 
     print(quote.rand_quote()) # Random Quote.
     print("Cycles until sleep:", returnCycles(), "\n")
