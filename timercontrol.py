@@ -126,7 +126,7 @@ while(True):
     os.system('cls' if os.name == 'nt' else 'clear')
     print(quote.rand_quote()) # Random Quote.
     print("Cycles until sleep:", returnCycles(), "\n ---")
-    print("Week number is", weekcalculator.NumberOfWeek(), "\n")
+    print(f"Week number is {weekcalculator.NumberOfWeek()} / 52 ({str(weekcalculator.NumberOfWeek()/52*100)[0:5]}%) \n")
 
     if(ShowUnfinished):
         print("ONGOING")
