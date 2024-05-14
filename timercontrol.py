@@ -7,6 +7,7 @@ from prettytable import PrettyTable
 import random
 import settings
 import math
+import weekcalculator
 
 
 # Naming files for saving.
@@ -123,10 +124,10 @@ quote = widgets.info() # Object for quote.
 
 while(True):
     os.system('cls' if os.name == 'nt' else 'clear')
-
     print(quote.rand_quote()) # Random Quote.
-    print("Cycles until sleep:", returnCycles(), "\n")
-    
+    print("Cycles until sleep:", returnCycles(), "\n ---")
+    print("Week number is", weekcalculator.NumberOfWeek(), "\n")
+
     if(ShowUnfinished):
         print("ONGOING")
         showList(UnfinishedLIST)
