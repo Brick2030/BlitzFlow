@@ -5,3 +5,4 @@ BookMarkFileName = "bookmarks.bm"
 SaveDirectory = "./tasks/"
 # Year starts at Day.Month (01.01)
 YearStartMonth = 9
+YearStartYear = 2023
