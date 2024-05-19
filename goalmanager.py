@@ -1,9 +1,9 @@
 import pickle
 import os
-import settings
+
 import random
 import time
-
+import settings
 
 filename = settings.SaveDirectory + settings.GoalManagerFileName
 goal_array = []

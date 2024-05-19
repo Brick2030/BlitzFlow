@@ -1,2 +1,2 @@
-python "/home/brick/+ Some files/Prior2/-Development/BlitzFlow/bookmarker.py"
+python "/home/brick/[MyFiles]/Hobbies and work/SoftwareDevelopment/BlitzFlow/bookmarker.py"
 #echo $OLDPWD
