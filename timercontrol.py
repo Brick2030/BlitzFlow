@@ -129,9 +129,17 @@ while(True):
     os.system('cls' if os.name == 'nt' else 'clear')
     print(quote.rand_quote()) # Random Quote.
     
-    print(f"Week number is {weekcalculator.NumberOfWeek()} / 52 ({str(weekcalculator.NumberOfWeek()/52*100)[0:5]}%) \n")
+    print(f"Week number is {weekcalculator.NumberOfWeek()} / 52 ({str(weekcalculator.NumberOfWeek()/52*100)[0:5]}%)\n")
+    
+    day_of_month = datetime.date.today().day
+    # Im lazy to get max num of every month. So I just use 30.
+    print(f"Today is {day_of_month} day. (Month is {round(day_of_month/30*100, 2)}% over...)")
+
+    day_of_week = datetime.date.today().weekday() + 1
+    print(f"Day of week {day_of_week} (Week is {round(day_of_week/7*100, 2)}% over...)\n")
+        
     # Wake up is at 9 am. Hardcoded yet. Later must be choosed in settings.
-    print(f"Cycles until sleep: {returnCycles()} / 30 (Day is {100.0-int(returnCycles())/30*100}% over...) \n ---")
+    print(f"Cycles until sleep: {returnCycles()} / 30 (Day is {round(100.0-int(returnCycles())/30*100, 2)}% over...) \n", "= = = "*5)
 
     if(ShowUnfinished):
         print("ONGOING")
@@ -154,6 +162,8 @@ while(True):
     match com:
         case "save":
             save()
+            print("- - - " * 10,"\nSaved.....")
+            time.sleep(1)
 
         case "load":
             #inp = input("Enter file name: dd-mm-yy without .task extension: ")
@@ -168,6 +178,8 @@ while(True):
             FailedLIST = GlobalLIST[2]
             # What is this line? 
             #GlobalLIST = [UnfinishedLIST, FinishedLIST, FailedLIST] # ARRAY OF ARRAYS. ONGOING, FINISHED, FAILED
+            print("- - - " * 10,"\nLoaded.....")
+            time.sleep(1)
 
         case "add":
             temp_c = input("Cycles to finish: ")
@@ -186,7 +198,10 @@ while(True):
 
         case "remove":
             temp_index = input("Index to remove: ")
+            print("- - - " * 10)
+            print(f"Removed {UnfinishedLIST[int(temp_index)].name}...")
             UnfinishedLIST.pop(int(temp_index))
+            time.sleep(1)
             
         case "less":
             ShowFailed = False
