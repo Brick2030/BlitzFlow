@@ -103,24 +103,6 @@ def finish(index, cycles):
     FinishedLIST.append(temp_task)
     UnfinishedLIST.pop(index)
 
-def randomGoals():
-    with open(settings.SaveDirectory +settings.GoalManagerFileName, "rb") as f:
-        loaded_goals = pickle.load(f)
-
-    rand10_array.clear()
-    RandGoalsArray.clear()
-    for x in range(5):
-        rand = random.randint(0, len(loaded_goals)-1)
-        if (rand10_array.count(rand) > 0): continue
-        rand10_array.append(rand)
-
-    for x in rand10_array:
-        RandGoalsArray.append([x, loaded_goals[x]])
-
-    for goal in RandGoalsArray:
-        print(goal[0], goal[1].name) 
-
-
 
 ##############################[Main Core]#################################################
 quote = widgets.info() # Object for quote.
@@ -150,9 +132,6 @@ while(True):
     if(ShowFailed):
         print("FAILED")
         showList(FailedLIST)
-
-    randomGoals()
-
 
 
 ##############################[Commands]########(Included in while)#######################
