@@ -83,7 +83,10 @@ def showList(arrayName):
         resultSumm = resultSumm + int(i.result)
 
     print(TaskTab)
-    print(f"Cycle summ is {cyclesSumm} | Result summ is {resultSumm}\n")
+    # Kinda weird system, it mostly useful for planning the start of the day, but when a lot of tasks
+    # already completed it's almost not usable at all. 
+    # Problem in the tab system itself, it must be changed.
+    print(f"Cycle summ is {cyclesSumm} / {settings.MaxCycle} ({cyclesSumm/settings.MaxCycle*100}%)| Result summ is {resultSumm} / {settings.MaxCycle} ({resultSumm/settings.MaxCycle*100}%)\n")
 
 def add(cycles, name):
     add_task = TaskClass(cycles, name, "0")
@@ -125,8 +128,10 @@ quote = widgets.info() # Object for quote.
 while(True):
     os.system('cls' if os.name == 'nt' else 'clear')
     print(quote.rand_quote()) # Random Quote.
-    print("Cycles until sleep:", returnCycles(), "\n ---")
+    
     print(f"Week number is {weekcalculator.NumberOfWeek()} / 52 ({str(weekcalculator.NumberOfWeek()/52*100)[0:5]}%) \n")
+    # Wake up is at 9 am. Hardcoded yet. Later must be choosed in settings.
+    print(f"Cycles until sleep: {returnCycles()} / 30 (Day is {100.0-int(returnCycles())/30*100}% over...) \n ---")
 
     if(ShowUnfinished):
         print("ONGOING")
