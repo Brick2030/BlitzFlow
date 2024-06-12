@@ -53,6 +53,14 @@ class Goal: # Class from goalmanager. Here until I figure it out how to combine 
 
 
 ##############################[Controls]#################################################
+def saveas(day: str, month: str, year: str):
+    namepath = (f"/{year}/{month}/")
+
+    os.makedirs(os.path.dirname(settings.SaveDirectory + namepath), exist_ok=True)
+    with open(settings.SaveDirectory + namepath + day + ".task", "wb") as f:
+        pickle.dump(GlobalLIST, f)
+    
+
 def returnCycles():
     Time = time.localtime()
     hour = Time.tm_hour + Time.tm_min/60
@@ -139,6 +147,13 @@ while(True):
     com = input() # Command input
     
     match com:
+
+        case "saveas": # Editing old or future files.
+            day = input("Enter day: ")
+            month = input("Enter month: ")
+            year = input ("Enter year: ")
+            saveas(day, month, year)
+
         case "save":
             save()
             print("- - - " * 10,"\nSaved.....")
