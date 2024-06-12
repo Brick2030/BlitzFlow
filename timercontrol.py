@@ -9,6 +9,8 @@ import settings
 import math
 import weekcalculator
 
+status_msg = "Welcome to the BlitzFlow..."
+
 
 # Naming files for saving.
 current_date = datetime.date.today()
@@ -50,7 +52,6 @@ class Goal: # Class from goalmanager. Here until I figure it out how to combine 
     def __init__(self, name, status):
         self.status = status
         self.name = name
-
 
 ##############################[Controls]#################################################
 def saveas(day: str, month: str, year: str):
@@ -111,6 +112,11 @@ def finish(index, cycles):
     FinishedLIST.append(temp_task)
     UnfinishedLIST.pop(index)
 
+def ShowStatus(msg):
+    global status_msg
+    status_msg = "Status: " + msg
+
+
 
 ##############################[Main Core]#################################################
 quote = widgets.info() # Object for quote.
@@ -141,6 +147,10 @@ while(True):
         print("FAILED")
         showList(FailedLIST)
 
+    # Status window for showing messages to user;
+    print("- - - " * 15, "\n")
+    print(status_msg)
+
 
 ##############################[Commands]########(Included in while)#######################
 
@@ -153,11 +163,11 @@ while(True):
             month = input("Enter month: ")
             year = input ("Enter year: ")
             saveas(day, month, year)
+            ShowStatus(f"Saved as {year}/{month}/{day}.task.")
 
         case "save":
             save()
-            print("- - - " * 10,"\nSaved.....")
-            time.sleep(1)
+            ShowStatus("Saved for today's date file")
 
         case "load":
             #inp = input("Enter file name: dd-mm-yy without .task extension: ")
@@ -172,38 +182,42 @@ while(True):
             FailedLIST = GlobalLIST[2]
             # What is this line? 
             #GlobalLIST = [UnfinishedLIST, FinishedLIST, FailedLIST] # ARRAY OF ARRAYS. ONGOING, FINISHED, FAILED
-            print("- - - " * 10,"\nLoaded.....")
-            time.sleep(1)
+            ShowStatus("Loaded")
 
         case "add":
             temp_c = input("Cycles to finish: ")
             temp_n = input("Task name:")
             add(temp_c, temp_n)
+            ShowStatus(f"Added {temp_n}")
 
         case "fail":
             temp_index = input("Index to fail: ")
             fail(int(temp_index))
+            ShowStatus("Task failed")
 
         case "finish":
             temp_index = input("Index to finish: ")
             temp_efficiency = input("Cycles used: ")
-
             finish(int(temp_index), int(temp_efficiency))
+            ShowStatus("Task finished")
 
         case "remove":
             temp_index = input("Index to remove: ")
-            print("- - - " * 10)
-            print(f"Removed {UnfinishedLIST[int(temp_index)].name}...")
+            ShowStatus(f"Removed {UnfinishedLIST[int(temp_index)].name}...")
             UnfinishedLIST.pop(int(temp_index))
-            time.sleep(1)
-            
+
         case "less":
             ShowFailed = False
             ShowFinished = False
+            ShowStatus("Less mode enabled")
 
         case "more":
             ShowFailed = True
             ShowFinished = True
+            ShowStatus("Less mode disabled")
+
+        case "help":
+            ShowStatus("more, less, remove, finish, fail, add, load, save, saveas")
 
         case "exit":
             quit()
