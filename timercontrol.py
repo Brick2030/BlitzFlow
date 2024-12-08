@@ -12,6 +12,9 @@ import weekcalculator
 status_msg = "Welcome to the BlitzFlow..."
 
 
+
+ticker : int = 0 # HELPS TO LOAD TODAYS DAY. VERY UGLY CODE SORRY
+
 # Naming files for saving.
 current_date = datetime.date.today()
 #year = current_date.strftime("%Y")
@@ -153,8 +156,32 @@ while(True):
 
 
 ##############################[Commands]########(Included in while)#######################
+    
+    com = ""
+    
+    if ticker == 0:
+        try:
+            ticker = ticker + 1
+            #inp = input("Enter file name: dd-mm-yy without .task extension: ")
+            inp = ""
 
-    com = input() # Command input
+            if (len(inp) == 0): inp = TodayFileName[0:len(TodayFileName)-5] # If nothing typed, loads today's note.
+            GlobalLIST = load(settings.SaveDirectory + inp + ".task")
+
+            UnfinishedLIST = GlobalLIST[0]
+            FinishedLIST = GlobalLIST[1]
+            FailedLIST = GlobalLIST[2]
+            ShowStatus("Loaded")
+            continue
+
+        except Exception as e:
+            ticker = ticker + 1
+            ShowStatus("Today's day doesnt exist yet! Nothing to load!")
+
+    else: com = input("input: ") # Command input
+
+
+    
     
     match com:
 
@@ -170,19 +197,19 @@ while(True):
             ShowStatus("Saved for today's date file")
 
         case "load":
-            #inp = input("Enter file name: dd-mm-yy without .task extension: ")
-            inp = input("Enter year\month\day without .task extension: ")
+            try:
+                #inp = input("Enter file name: dd-mm-yy without .task extension: ")
+                inp = input("Enter year\month\day without .task extension: ")
 
-            if (len(inp) == 0): inp = TodayFileName[0:len(TodayFileName)-5] # If nothing typed, loads today's note.
-            #GlobalLIST = load(inp)
-            GlobalLIST = load(settings.SaveDirectory + inp + ".task")
+                if (len(inp) == 0): inp = TodayFileName[0:len(TodayFileName)-5] # If nothing typed, loads today's note.
+                GlobalLIST = load(settings.SaveDirectory + inp + ".task")
 
-            UnfinishedLIST = GlobalLIST[0]
-            FinishedLIST = GlobalLIST[1]
-            FailedLIST = GlobalLIST[2]
-            # What is this line? 
-            #GlobalLIST = [UnfinishedLIST, FinishedLIST, FailedLIST] # ARRAY OF ARRAYS. ONGOING, FINISHED, FAILED
-            ShowStatus("Loaded")
+                UnfinishedLIST = GlobalLIST[0]
+                FinishedLIST = GlobalLIST[1]
+                FailedLIST = GlobalLIST[2]
+                ShowStatus("Loaded")
+            except:
+                ShowStatus("Something is wrong!")
 
         case "add":
             temp_c = input("Cycles to finish: ")
